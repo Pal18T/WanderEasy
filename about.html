@@ -184,14 +184,29 @@
                     </ul>
                 </div>
 
-                <div class = "subscribe-form footer-item">
+                <div class="subscribe-form footer-item">
                     <h2>Subscribe for Newsletter!</h2>
-                    <form class = "flex">
-                        <input type = "email" placeholder="Enter Email" class = "form-control">
-                        <input type = "submit" class = "btn" value = "Subscribe">
+                    <form class="flex" onsubmit="return handleSubscription(event)">
+                        <input type="email" id="email" placeholder="Enter Email" class="form-control">
+                        <input type="submit" class="btn" value="Subscribe">
                     </form>
                 </div>
-            </div>
+                
+                <script>
+                    function handleSubscription(event) {
+                        event.preventDefault(); // Prevent form submission
+                        
+                        let emailInput = document.getElementById("email").value.trim();
+                        
+                        if (emailInput === "") {
+                            alert("Please fill in your email.");
+                            return false;
+                        } else {
+                            alert("You have subscribed to the newsletter!");
+                            return true;
+                        }
+                    }
+                </script>
         </footer>
         <!-- end of footer -->
 

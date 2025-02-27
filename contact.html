@@ -74,14 +74,33 @@
                 </div>
 
                 <div class = "contact-row">
-                    <div class = "contact-left">
-                        <form class = "contact-form">
-                            <input type = "text" class = "form-control" placeholder="Your name">
-                            <input type = "email" class = "form-control" placeholder="Your email">
-                            <textarea rows = "4" class = "form-control" placeholder="Your message" style = "resize: none;"></textarea>
-                            <input type = "submit" class = "btn" value = "Send message">
+                    <div class="contact-left">
+                        <form class="contact-form" onsubmit="return handleMessage(event)">
+                            <input type="text" id="name" class="form-control" placeholder="Your name">
+                            <input type="email" id="email" class="form-control" placeholder="Your email">
+                            <textarea rows="4" id="message" class="form-control" placeholder="Your message" style="resize: none;"></textarea>
+                            <input type="submit" class="btn" value="Send message">
                         </form>
                     </div>
+                    
+                    <script>
+                        function handleMessage(event) {
+                            event.preventDefault(); // Prevent form submission
+                    
+                            let name = document.getElementById("name").value.trim();
+                            let email = document.getElementById("email").value.trim();
+                            let message = document.getElementById("message").value.trim();
+                    
+                            if (name === "" || email === "" || message === "") {
+                                alert("Please fill in all fields.");
+                                return false;
+                            } else {
+                                alert("Your message has been sent!");
+                                return true;
+                            }
+                        }
+                    </script>
+                    
                     <div class = "contact-right my-2">
                         <div class = "contact-item">
                             <span class = "contact-icon flex">
@@ -169,14 +188,39 @@
                     </ul>
                 </div>
 
-                <div class = "subscribe-form footer-item">
+                <!-- <div class = "subscribe-form footer-item">
                     <h2>Subscribe for Newsletter!</h2>
                     <form class = "flex">
                         <input type = "email" placeholder="Enter Email" class = "form-control">
                         <input type = "submit" class = "btn" value = "Subscribe">
                     </form>
                 </div>
+            </div> -->
+
+            <div class="subscribe-form footer-item">
+                <h2>Subscribe for Newsletter!</h2>
+                <form class="flex" onsubmit="return handleSubscription(event)">
+                    <input type="email" id="email" placeholder="Enter Email" class="form-control">
+                    <input type="submit" class="btn" value="Subscribe">
+                </form>
             </div>
+            
+            <script>
+                function handleSubscription(event) {
+                    event.preventDefault(); // Prevent form submission
+                    
+                    let emailInput = document.getElementById("email").value.trim();
+                    
+                    if (emailInput === "") {
+                        alert("Please fill in your email.");
+                        return false;
+                    } else {
+                        alert("You have subscribed to the newsletter!");
+                        return true;
+                    }
+                }
+            </script>
+            
         </footer>
         <!-- end of footer -->
 
